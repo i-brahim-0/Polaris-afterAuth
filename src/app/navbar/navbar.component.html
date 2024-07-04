@@ -1,7 +1,7 @@
-<nav class="navbar navbar-expand-lg">
+<nav class="navbar navbar-expand-lg sticky-top">
   <a class="navbar-brand" routerLink="products">Polaris</a>
   <button
-    class="navbar-toggler"
+    class="navbar-toggler bg-light"
     type="button"
     data-toggle="collapse"
     data-target="#navbarSupportedContent"
@@ -9,19 +9,21 @@
     aria-expanded="false"
     aria-label="Toggle navigation"
   >
-    <span class="navbar-toggler-icon"></span>
+    <span class="navbar-toggler-icon w-100 h-100"
+      ><i class="fa-solid fa-bars"></i
+    ></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" routerLink="home">Home</a>
+        <a *ngIf="isLogin" class="nav-link" routerLink="home">Home</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="about">About</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="products">Products</a>
+        <a *ngIf="isLogin" class="nav-link" routerLink="products">Products</a>
       </li>
     </ul>
     <div class="form-inline">
@@ -41,13 +43,19 @@
       </div>
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" routerLink="login">Login</a>
+          <a *ngIf="!isLogin" class="nav-link" routerLink="login">Login</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="register">Regiser</a>
+          <a *ngIf="!isLogin" class="nav-link" routerLink="register">Regiser</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link">Logout</a>
+          <a
+            *ngIf="isLogin"
+            (click)="logout()"
+            routerLink="login"
+            class="nav-link"
+            >Logout</a
+          >
         </li>
       </ul>
     </div>

@@ -30,7 +30,7 @@ export class RegisterComponent implements OnInit {
     password: new FormControl(null, [
       Validators.required,
       Validators.minLength(4),
-      Validators.pattern('^[A-Z][a-z0-9]{3,8}$'),
+      Validators.pattern('[A-Za-z0-9]{3,8}$'),
     ]),
   });
   constructor(private _AuthService: AuthService, private _Router: Router) {}
@@ -38,8 +38,8 @@ export class RegisterComponent implements OnInit {
 
   submitRegisterForm(formValue: FormGroup) {
     this._AuthService.register(formValue.value).subscribe((response) => {
-      if (response.id) {
-        console.log(response);
+      if (response.id == 11) {
+        console.log(response.id);
         this._Router.navigate(['/login']);
       } else {
         this.error = response; // response from APi
